@@ -8,6 +8,7 @@
 import Foundation
 
 extension String {
+
     static var reuseIdentifier: String {
         return String(describing: self)
     }

@@ -2,43 +2,34 @@
 //  MVVMIOSTests.swift
 //  MVVMIOSTests
 //
-//  Created by Ravi Bastola on 2/4/22.
+//  Created by Ravi Bastola on 2/6/22.
 //
 
 import XCTest
-@testable import MVVMIOS
-
-class MockNetworkService: NetworkingProtocol {
-
-    var result: Result<Response, NetworkError>
-
-    init(result: Result<Response, NetworkError>) {
-        self.result = result
-    }
-
-    func load(with request: URLRequest, completion: @escaping (Result<Response, NetworkError>) -> Void) {
-        completion(result)
-    }
-
-}
 
 class MVVMIOSTests: XCTestCase {
 
-    public func testItFailsWhenAUrlIsInvalid() {
-        let service = MockNetworkService(result: .failure(.invalidURL))
-        let expectation = expectation(description: "It fails when there is an invalid url")
-        let request = URLRequest(url: URL(string: "invalidURl")!)
-        service.load(with: request) { result in
-            expectation.fulfill()
-            switch result {
-            case .failure(let error):
-                XCTAssertEqual(NetworkError.invalidURL, error)
-            case .success:
-                break
-            }
-        }
-
-        waitForExpectations(timeout: 0.5, handler: nil)
-
+    override func setUpWithError() throws {
+        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
+
+    override func tearDownWithError() throws {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+
+    func testExample() throws {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        // Any test you write for XCTest can be annotated as throws and async.
+        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
+        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    }
+
+    func testPerformanceExample() throws {
+        // This is an example of a performance test case.
+        measure {
+            // Put the code you want to measure the time of here.
+        }
+    }
+
 }

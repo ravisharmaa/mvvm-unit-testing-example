@@ -13,12 +13,10 @@ enum NetworkError: Error {
 }
 
 protocol NetworkingProtocol {
-
     func load(with request: URLRequest, completion: @escaping (Result<Response, NetworkError>) -> Void)
 }
 
 final class NetworkingService: NetworkingProtocol {
-
     func load(with request: URLRequest, completion: @escaping (Result<Response, NetworkError>) -> Void) {
 
     }

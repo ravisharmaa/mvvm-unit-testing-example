@@ -7,6 +7,6 @@
 
 import Foundation
 
-final class UserListViewModel: NSObject {
+final class UserListViewModel {
 
 }

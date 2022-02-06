@@ -9,10 +9,16 @@ import UIKit
 
 class ViewController: UITableViewController {
 
-    fileprivate lazy var viewModel: UserViewModel = {
-        let viewModel = UserViewModel()
-        return viewModel
-    }()
+    let viewModel: UserViewModel
+
+    init(withVM: UserViewModel) {
+        self.viewModel = withVM
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

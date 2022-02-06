@@ -7,11 +7,11 @@
 
 import Foundation
 
-final class UserViewModel: NSObject {
+final class UserViewModel {
 
-    fileprivate let networkingService: NetworkingProtocol
+    private let networkingService: NetworkingProtocol
 
-    init(networkingService: NetworkingProtocol = NetworkingService()) {
+    init(networkingService: NetworkingProtocol) {
         self.networkingService = networkingService
     }
 

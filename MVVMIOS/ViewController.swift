@@ -22,7 +22,8 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.fetchFromNetwork()
+        guard let url = URL(string: "https://google.com") else { return }
+        viewModel.fetchFromNetwork(from: url)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum NetworkError: Error {
     case invalidURL
@@ -13,11 +14,21 @@ enum NetworkError: Error {
 }
 
 protocol NetworkingProtocol {
-    func load(with request: URLRequest, completion: @escaping (Result<Response, NetworkError>) -> Void)
+    func load<T: Codable>(_ type: T.Type,
+                          from request: URLRequest, then completion: @escaping (Result<T, Error>) -> Void)
 }
 
 final class NetworkingService: NetworkingProtocol {
-    func load(with request: URLRequest, completion: @escaping (Result<Response, NetworkError>) -> Void) {
+    func load<T>(_ type: T.Type,
+                 from request: URLRequest,
+                 then completion: @escaping (Result<T, Error>) -> Void) {
+
+        if let url = request.url, UIApplication.shared.canOpenURL(url) {
+        } else {
+            completion(.failure(NetworkError.invalidURL as Error))
+            return
+        }
 
     }
+
 }

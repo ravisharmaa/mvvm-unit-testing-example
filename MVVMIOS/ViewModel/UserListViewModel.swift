@@ -9,4 +9,13 @@ import Foundation
 
 final class UserListViewModel {
 
+    let response: Response
+
+    init(from response: Response) {
+        self.response = response
+    }
+
+    var fullName: String {
+        response.name + response.name
+    }
 }

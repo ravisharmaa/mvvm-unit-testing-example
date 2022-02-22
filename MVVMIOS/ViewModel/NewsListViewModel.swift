@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+final class NewsListViewModel: Equatable {
+
+    static func == (lhs: NewsListViewModel, rhs: NewsListViewModel) -> Bool {
+        return lhs.newsData.category == rhs.newsData.category
+    }
+
+    let newsData: NewsData
+
+    init(_ fromData: NewsData) {
+        self.newsData = fromData
+    }
+}

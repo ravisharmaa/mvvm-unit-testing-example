@@ -6,30 +6,54 @@
 //
 
 import XCTest
+@testable import MVVMIOS
 
 class NewsViewModelTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var sut: NewsViewModel!
+
+    func testItGetsInitilizedWithAService() {
+        let mockService: MockNetworkClient = MockNetworkClient()
+        sut = NewsViewModel(service: mockService)
+        XCTAssertNotNil(sut.networkingService)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testItThrowsInvalidUrlErrorWhenTheUrlIsInvalid() {
+        let mockService: MockNetworkClient = MockNetworkClient()
+        mockService.result = Result<News<[NewsData]>, Error>.failure(NetworkError.invalidURL as Error)
+        sut = NewsViewModel(service: mockService)
+        sut.fetchData(forURL: "http://invalid.url") { result in
+            switch result {
+            case .success:
+                XCTFail("No error thrown")
+            case .failure(let error):
+                XCTAssertEqual(NetworkError.invalidURL.localizedDescription, error.localizedDescription)
+            }
         }
     }
 
+    func testItFetchesDataFromNetwork() {
+        let mockService: MockNetworkClient = MockNetworkClient()
+        let newsData: NewsData =
+            .init(author: "Test Author", title: "TestTitle", description: "Test Description",
+                  url: "random url", source: "random source", category: "random Category",
+                  language: "random language", country: "random country")
+        let data: News<[NewsData]> = .init(data: [newsData])
+        mockService.result = Result<News<[NewsData]>, Error>.success(data)
+        sut = NewsViewModel(service: mockService)
+        let expectedResult: [NewsListViewModel] = [
+            .init(newsData)
+        ]
+
+        sut.fetchData(forURL: "https://news-api.org") { result in
+            switch result {
+            case .success(let data):
+                XCTAssertTrue(data.count == 1)
+                XCTAssertEqual(expectedResult, data)
+            case .failure:
+                XCTFail("No error thrown")
+            }
+        }
+
+    }
 }

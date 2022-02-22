@@ -8,10 +8,24 @@
 import Foundation
 import UIKit
 
-enum NetworkError: Error {
+enum NetworkError: Error, CustomStringConvertible {
     case invalidURL
     case invalidResponse
     case invalidData
+    case invalidJSON(error: Error)
+
+    var description: String {
+        switch self {
+        case .invalidURL:
+            return "The url is invalid"
+        case .invalidResponse:
+            return "The response in invalid"
+        case .invalidData:
+            return "The data is invalid"
+        case .invalidJSON(let error):
+            return "The json is invalid \(error)"
+        }
+    }
 }
 
 protocol NetworkingProtocol {
@@ -29,12 +43,10 @@ final class NetworkingService: NetworkingProtocol {
                     completion(.failure(error))
                     return
                 }
-
                 guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
                     completion(.failure(NetworkError.invalidResponse as Error))
                     return
                 }
-
                 guard let data = data else {
                     completion(.failure(NetworkError.invalidData as Error))
                     return
@@ -46,7 +58,7 @@ final class NetworkingService: NetworkingProtocol {
                     return
 
                 } catch let error {
-                    completion(.failure(error))
+                    completion(.failure(NetworkError.invalidJSON(error: error)))
                     return
                 }
 

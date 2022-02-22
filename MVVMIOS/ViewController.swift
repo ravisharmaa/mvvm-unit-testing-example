@@ -9,6 +9,13 @@ import UIKit
 
 class ViewController: UITableViewController {
 
+    // MARK: Views
+    fileprivate lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.hidesWhenStopped = true
+        return activityIndicator
+    }()
+
     let viewModel: UserViewModel
 
     init(withVM: UserViewModel) {
@@ -22,9 +29,25 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupActivityIndicator()
+        fetchDataFromViewModel()
+
+    }
+
+    func setupActivityIndicator() {
+
+    }
+
+    func fetchDataFromViewModel() {
         guard let url = URL(string: "https://google.com") else { return }
         viewModel.fetchFromNetwork(from: url)
+        viewModel.fetchCompleted = { _, errorText in
+            print(errorText)
+        }
     }
+}
+
+extension ViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
@@ -35,5 +58,4 @@ class ViewController: UITableViewController {
         cell.backgroundColor = .red
         return cell
     }
-
 }

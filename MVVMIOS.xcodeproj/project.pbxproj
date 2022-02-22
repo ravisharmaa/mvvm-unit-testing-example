@@ -7,7 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41080FBD27B28C8000C76DF4 /* UserListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41080FBC27B28C8000C76DF4 /* UserListViewModelTest.swift */; };
+		4111804927BF509A00DAE824 /* NewsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4111804827BF509A00DAE824 /* NewsViewModelTests.swift */; };
+		411E407227BFEA6B00B62078 /* NewsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411E407127BFEA6B00B62078 /* NewsListViewModel.swift */; };
+		411E407327BFEA6B00B62078 /* NewsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411E407127BFEA6B00B62078 /* NewsListViewModel.swift */; };
 		41623F7F27AD9E30009DEB9F /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41623F7E27AD9E30009DEB9F /* Response.swift */; };
+		41A364C927B934E900AD53EB /* MVVMIOSConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 41A364C827B934E900AD53EB /* MVVMIOSConfig.xcconfig */; };
+		41A364CC27B9366100AD53EB /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A364CB27B9366100AD53EB /* Configuration.swift */; };
+		41A364CE27B93A5E00AD53EB /* NetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A364CD27B93A5E00AD53EB /* NetworkServiceMock.swift */; };
+		41A364D027B93A9900AD53EB /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A364CF27B93A9900AD53EB /* NewsViewModel.swift */; };
+		41A364D127B93A9900AD53EB /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A364CF27B93A9900AD53EB /* NewsViewModel.swift */; };
+		41A364D627B95AD300AD53EB /* NewsDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A364D527B95AD300AD53EB /* NewsDataTests.swift */; };
+		41A364D927B95B4500AD53EB /* NewsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 41A364D827B95B4500AD53EB /* NewsData.json */; };
+		41A364DA27B961E100AD53EB /* NewsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 41A364D827B95B4500AD53EB /* NewsData.json */; };
 		41AEC23027B006C900BEDDB8 /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7EC9427AD790F00121738 /* UserListViewModel.swift */; };
 		41B7EC7B27AD725D00121738 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7EC7A27AD725D00121738 /* AppDelegate.swift */; };
 		41B7EC7D27AD725D00121738 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7EC7C27AD725D00121738 /* SceneDelegate.swift */; };
@@ -36,7 +48,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		41080FBC27B28C8000C76DF4 /* UserListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModelTest.swift; sourceTree = "<group>"; };
+		4111804827BF509A00DAE824 /* NewsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModelTests.swift; sourceTree = "<group>"; };
+		411E407127BFEA6B00B62078 /* NewsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewModel.swift; sourceTree = "<group>"; };
 		41623F7E27AD9E30009DEB9F /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		41A364C827B934E900AD53EB /* MVVMIOSConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MVVMIOSConfig.xcconfig; sourceTree = "<group>"; };
+		41A364CB27B9366100AD53EB /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		41A364CD27B93A5E00AD53EB /* NetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceMock.swift; sourceTree = "<group>"; };
+		41A364CF27B93A9900AD53EB /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
+		41A364D527B95AD300AD53EB /* NewsDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDataTests.swift; sourceTree = "<group>"; };
+		41A364D827B95B4500AD53EB /* NewsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NewsData.json; sourceTree = "<group>"; };
 		41B7EC7727AD725D00121738 /* MVVMIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVMIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41B7EC7A27AD725D00121738 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41B7EC7C27AD725D00121738 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +100,22 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		41A364CA27B9365300AD53EB /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				41A364CB27B9366100AD53EB /* Configuration.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		41A364D727B95B2100AD53EB /* stubs */ = {
+			isa = PBXGroup;
+			children = (
+				41A364D827B95B4500AD53EB /* NewsData.json */,
+			);
+			path = stubs;
+			sourceTree = "<group>";
+		};
 		41B7EC6E27AD725D00121738 = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +137,8 @@
 		41B7EC7927AD725D00121738 /* MVVMIOS */ = {
 			isa = PBXGroup;
 			children = (
+				41A364C827B934E900AD53EB /* MVVMIOSConfig.xcconfig */,
+				41A364CA27B9365300AD53EB /* Configuration */,
 				41623F7D27AD9E21009DEB9F /* Models */,
 				41B7EC9827AD7D7800121738 /* Extension */,
 				41B7EC9627AD7D5F00121738 /* Views */,
@@ -120,6 +159,8 @@
 			children = (
 				41B7EC9027AD772500121738 /* UserViewModel.swift */,
 				41B7EC9427AD790F00121738 /* UserListViewModel.swift */,
+				41A364CF27B93A9900AD53EB /* NewsViewModel.swift */,
+				411E407127BFEA6B00B62078 /* NewsListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -158,8 +199,13 @@
 		41DC42F227AFFF3700DFD3B3 /* MVVMIOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				41A364D727B95B2100AD53EB /* stubs */,
 				41DC42F327AFFF3700DFD3B3 /* MVVMIOSTests.swift */,
 				41DC42FA27AFFF6600DFD3B3 /* UserViewModelTests.swift */,
+				41080FBC27B28C8000C76DF4 /* UserListViewModelTest.swift */,
+				41A364D527B95AD300AD53EB /* NewsDataTests.swift */,
+				41A364CD27B93A5E00AD53EB /* NetworkServiceMock.swift */,
+				4111804827BF509A00DAE824 /* NewsViewModelTests.swift */,
 			);
 			path = MVVMIOSTests;
 			sourceTree = "<group>";
@@ -171,10 +217,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 41B7EC8B27AD725D00121738 /* Build configuration list for PBXNativeTarget "MVVMIOS" */;
 			buildPhases = (
-				413E446727AE389300B628CA /* Swift LInt */,
 				41B7EC7327AD725D00121738 /* Sources */,
 				41B7EC7427AD725D00121738 /* Frameworks */,
 				41B7EC7527AD725D00121738 /* Resources */,
+				4111804A27BF50DD00DAE824 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -245,7 +291,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41A364DA27B961E100AD53EB /* NewsData.json in Resources */,
 				41B7EC8727AD725D00121738 /* LaunchScreen.storyboard in Resources */,
+				41A364C927B934E900AD53EB /* MVVMIOSConfig.xcconfig in Resources */,
 				41B7EC8427AD725D00121738 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,13 +302,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41A364D927B95B4500AD53EB /* NewsData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		413E446727AE389300B628CA /* Swift LInt */ = {
+		4111804A27BF50DD00DAE824 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -269,14 +318,13 @@
 			);
 			inputPaths = (
 			);
-			name = "Swift LInt";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -285,12 +333,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				411E407227BFEA6B00B62078 /* NewsListViewModel.swift in Sources */,
 				41623F7F27AD9E30009DEB9F /* Response.swift in Sources */,
 				41B7EC9327AD776A00121738 /* NetworkService.swift in Sources */,
 				41B7EC9A27AD7D9400121738 /* String+Extension.swift in Sources */,
+				41A364CC27B9366100AD53EB /* Configuration.swift in Sources */,
 				41B7EC9527AD790F00121738 /* UserListViewModel.swift in Sources */,
 				41B7EC7F27AD725D00121738 /* ViewController.swift in Sources */,
 				41B7EC9127AD772500121738 /* UserViewModel.swift in Sources */,
+				41A364D027B93A9900AD53EB /* NewsViewModel.swift in Sources */,
 				41B7EC7B27AD725D00121738 /* AppDelegate.swift in Sources */,
 				41B7EC7D27AD725D00121738 /* SceneDelegate.swift in Sources */,
 			);
@@ -300,12 +351,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41A364CE27B93A5E00AD53EB /* NetworkServiceMock.swift in Sources */,
+				41A364D127B93A9900AD53EB /* NewsViewModel.swift in Sources */,
+				41A364D627B95AD300AD53EB /* NewsDataTests.swift in Sources */,
 				41DC42F427AFFF3700DFD3B3 /* MVVMIOSTests.swift in Sources */,
 				41AEC23027B006C900BEDDB8 /* UserListViewModel.swift in Sources */,
 				41DC42FC27B0003000DFD3B3 /* UserViewModel.swift in Sources */,
 				41DC42FD27B0004400DFD3B3 /* NetworkService.swift in Sources */,
+				41080FBD27B28C8000C76DF4 /* UserListViewModelTest.swift in Sources */,
+				4111804927BF509A00DAE824 /* NewsViewModelTests.swift in Sources */,
 				41DC42FB27AFFF6600DFD3B3 /* UserViewModelTests.swift in Sources */,
 				41DC42FE27B0007D00DFD3B3 /* Response.swift in Sources */,
+				411E407327BFEA6B00B62078 /* NewsListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +390,7 @@
 /* Begin XCBuildConfiguration section */
 		41B7EC8927AD725D00121738 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41A364C827B934E900AD53EB /* MVVMIOSConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -394,6 +452,7 @@
 		};
 		41B7EC8A27AD725D00121738 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41A364C827B934E900AD53EB /* MVVMIOSConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

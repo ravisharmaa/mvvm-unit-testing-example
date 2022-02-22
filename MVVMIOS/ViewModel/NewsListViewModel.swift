@@ -18,4 +18,8 @@ final class NewsListViewModel: Equatable {
     init(_ fromData: NewsData) {
         self.newsData = fromData
     }
+
+    var newsCategory: String {
+        return newsData.category ?? "Unavailable"
+    }
 }

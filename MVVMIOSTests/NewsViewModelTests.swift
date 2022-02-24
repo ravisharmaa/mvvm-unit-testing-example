@@ -27,6 +27,19 @@ class NewsViewModelTests: XCTestCase {
         XCTAssertNotNil(newsViewModel.networkingService)
     }
 
+    func testItSetsIsLoadingToFalseWhenInitialized() {
+        XCTAssertFalse(newsViewModel.isLoading)
+    }
+
+    func testItSetsLoadinToFalseAfterDataIsFetched() {
+        mockNetworkingService.result = Result<News, Error>.failure(NetworkError.invalidURL)
+        XCTAssertFalse(newsViewModel.isLoading)
+        newsViewModel.fetchData { _ in
+//            XCTAssertTrue(self.newsViewModel.isLoading)
+        }
+        XCTAssertFalse(newsViewModel.isLoading)
+    }
+
     func testItThrowsInvalidUrlErrorWhenTheUrlIsInvalid() {
         mockNetworkingService.result = Result<News, Error>.failure(NetworkError.invalidURL)
         var fetchedDataResults: [Result<[NewsListViewModel], Error>] = []
@@ -85,6 +98,5 @@ class NewsViewModelTests: XCTestCase {
         case .failure:
             XCTFail("No Error should be thrown.")
         }
-
     }
 }

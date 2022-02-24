@@ -10,11 +10,11 @@ import Foundation
 extension News {
     static var placeholder: News {
         return .init(data: [
-            .init(id: UUID(), author: "test_author", title: "test_title",
+            .init(author: "test_author", title: "test_title",
                   description: "test_description", url: "test_url",
                   source: "test_source", category: "test_category",
                   language: "test_lan", country: "test_country"),
-            .init(id: UUID(), author: "test_author", title: "test_title",
+            .init(author: "test_author", title: "test_title",
                   description: "test_description", url: "test_url",
                   source: "test_source", category: "test_category",
                   language: "test_lan", country: "test_country")

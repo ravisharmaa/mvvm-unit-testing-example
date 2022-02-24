@@ -17,7 +17,7 @@ final class NewsViewModel {
         case main
     }
 
-    var isLoading: Bool = true
+    var isLoading: Bool = false
 
     init(service: NetworkingProtocol) {
         self.networkingService = service

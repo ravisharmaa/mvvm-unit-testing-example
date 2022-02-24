@@ -9,10 +9,20 @@ import UIKit
 
 class ViewController: UITableViewController {
 
-    let viewModel: UserViewModel
+    // MARK: Views
+    fileprivate lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.hidesWhenStopped = true
+        return activityIndicator
+    }()
 
-    init(withVM: UserViewModel) {
-        self.viewModel = withVM
+    let viewModel: NewsViewModel
+
+    var dataSource: UITableViewDiffableDataSource<NewsViewModel.NewVCSection, NewsListViewModel>!
+
+    init(_ usingViewModel: NewsViewModel) {
+        self.viewModel = usingViewModel
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -22,18 +32,54 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let url = URL(string: "https://google.com") else { return }
-        viewModel.fetchFromNetwork(from: url)
+        setupView()
+        setupActivityIndicator()
+        fetchDataFromViewModel()
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+    func setupView() {
+        view.backgroundColor = .systemBackground
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.backgroundColor = .red
-        return cell
+    func setupActivityIndicator() {
+        tableView.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: tableView.centerYAnchor)
+        ])
+
+        if viewModel.isLoading {
+            activityIndicator.startAnimating()
+        }
+
     }
 
+    func fetchDataFromViewModel() {
+        viewModel.fetchData { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    self.setupDataSource()
+                    self.activityIndicator.stopAnimating()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
+    func setupDataSource() {
+        dataSource = .init(tableView: tableView, cellProvider: { _, _, itemIdentifier in
+            let cell = UITableViewCell()
+            cell.textLabel?.text = itemIdentifier.newsCategory
+            return cell
+        })
+
+        var snapshot: NSDiffableDataSourceSnapshot = NSDiffableDataSourceSnapshot<NewsViewModel.NewVCSection,
+                                                                                    NewsListViewModel>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(viewModel.newsListViewModel)
+        dataSource.apply(snapshot)
+    }
 }

@@ -13,22 +13,27 @@ final class NewsViewModel {
 
     var newsListViewModel: [NewsListViewModel] = []
 
+    enum NewVCSection {
+        case main
+    }
+
+    var isLoading: Bool = true
+
     init(service: NetworkingProtocol) {
         self.networkingService = service
     }
 
     func fetchData(completion: @escaping(Result<[NewsListViewModel], Error>) -> Void) {
-
-        guard let url = URL(string: "https://" + Configuration.getValueFor(key: AppConstants.baseURL)
-                            + "?access_token=\(Configuration.getValueFor(key: AppConstants.apiKey))") else {
+        isLoading = true
+        guard let url = URL(string: "http://" + Configuration.getValueFor(key: AppConstants.baseURL)
+                            + "?access_key=\(Configuration.getValueFor(key: AppConstants.apiKey))") else {
             completion(.failure(NetworkError.invalidURL))
             return
         }
 
-        print(url)
-
         networkingService.loadUsingModel(News.self, from: URLRequest(url: url)) { [weak self] result in
             guard let self = self else { return }
+            self.isLoading = false
             switch result {
             case .success(let newsData):
                 self.newsListViewModel = newsData.data.map { NewsListViewModel($0)}
@@ -41,6 +46,8 @@ final class NewsViewModel {
                     completion(.failure(NetworkError.invalidURL))
                 case .invalidResponse:
                     completion(.failure(NetworkError.invalidResponse))
+                case .decodingError:
+                    print("Hello")
                 }
             case .failure(let error):
                 completion(.failure(error))

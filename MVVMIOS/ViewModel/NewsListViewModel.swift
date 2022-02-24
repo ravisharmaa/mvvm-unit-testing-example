@@ -7,10 +7,14 @@
 
 import Foundation
 
-final class NewsListViewModel: Equatable {
+final class NewsListViewModel: Equatable, Hashable {
 
     static func == (lhs: NewsListViewModel, rhs: NewsListViewModel) -> Bool {
-        return lhs.newsData.category == rhs.newsData.category
+        return lhs.newsData.id == rhs.newsData.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(newsData.id)
     }
 
     let newsData: NewsData

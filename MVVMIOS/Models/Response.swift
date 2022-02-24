@@ -15,7 +15,7 @@ struct News: Codable {
     let data: [NewsData]
 }
 struct NewsData: Codable {
-    let id: UUID?
+    let id: UUID = UUID()
     let author: String?
     let title: String?
     let description: String?
@@ -24,4 +24,10 @@ struct NewsData: Codable {
     let category: String?
     let language: String?
     let country: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case author, title, description, url, source, category, language, country
+    }
+
 }

@@ -13,6 +13,7 @@ enum NetworkError: Error {
     case invalidURL
     case invalidResponse
     case invalidData
+    case decodingError
 }
 
 extension NetworkError: CustomStringConvertible {
@@ -24,6 +25,8 @@ extension NetworkError: CustomStringConvertible {
             return "The response is invalid."
         case .invalidData:
             return "The data is invalid."
+        case .decodingError:
+            return "Could not decode the response"
         }
     }
 }
@@ -58,7 +61,7 @@ final class NetworkingService: NetworkingProtocol {
                     return
 
                 } catch {
-                    completion(.failure(NetworkError.invalidResponse))
+                    completion(.failure(NetworkError.decodingError))
                     return
                 }
 

@@ -16,10 +16,10 @@ class ViewController: UITableViewController {
         return activityIndicator
     }()
 
-    let viewModel: UserViewModel
+    let viewModel: NewsViewModel
 
-    init(withVM: UserViewModel) {
-        self.viewModel = withVM
+    init(_ usingViewModel: NewsViewModel) {
+        self.viewModel = usingViewModel
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -31,7 +31,6 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         setupActivityIndicator()
         fetchDataFromViewModel()
-
     }
 
     func setupActivityIndicator() {
@@ -39,10 +38,13 @@ class ViewController: UITableViewController {
     }
 
     func fetchDataFromViewModel() {
-        guard let url = URL(string: "https://google.com") else { return }
-        viewModel.fetchFromNetwork(from: url)
-        viewModel.fetchCompleted = { _, errorText in
-            print(errorText)
+        viewModel.fetchData { result in
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                print(error)
+            }
         }
     }
 }

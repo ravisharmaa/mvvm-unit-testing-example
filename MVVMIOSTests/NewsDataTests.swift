@@ -16,7 +16,7 @@ class NewsDataTests: XCTestCase {
         }
 
         let data = try Data(contentsOf: URL(fileURLWithPath: path))
-        let json = try JSONDecoder().decode(News<[NewsData]>.self, from: data)
+        let json = try JSONDecoder().decode(News.self, from: data)
 
         XCTAssertEqual(json.data.count, 25)
     }

@@ -8,7 +8,7 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-BASE_URL=http:#()api.mediastack.com/v1/news
+BASE_URL=api.mediastack.com/v1/news
 
 // Api keys
 

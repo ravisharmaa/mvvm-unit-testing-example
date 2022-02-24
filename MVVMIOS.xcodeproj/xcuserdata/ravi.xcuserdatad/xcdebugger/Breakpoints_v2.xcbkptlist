@@ -3,4 +3,54 @@
    uuid = "456BA93D-BD1E-4644-AF9A-797D8279850D"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "13532182-D90C-4A66-9DC7-240F82B001A8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MVVMIOS/ViewModel/NewsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "fetchData(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "13532182-D90C-4A66-9DC7-240F82B001A8 - 6dcf3b6036398a8d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MVVMIOS.NewsViewModel.fetchData(completion: (Swift.Result&lt;Swift.Array&lt;MVVMIOS.NewsListViewModel&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "MVVMIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ravi/Work/MVVMIOS/MVVMIOS/ViewModel/NewsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "2004">
+               </Location>
+               <Location
+                  uuid = "13532182-D90C-4A66-9DC7-240F82B001A8 - b233308c72a80f44"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MVVMIOSTests.NewsViewModel.fetchData(completion: (Swift.Result&lt;Swift.Array&lt;MVVMIOSTests.NewsListViewModel&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "MVVMIOSTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ravi/Work/MVVMIOS/MVVMIOS/ViewModel/NewsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "2004">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

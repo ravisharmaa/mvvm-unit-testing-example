@@ -8,22 +8,22 @@
 import Foundation
 import UIKit
 
-enum NetworkError: Error, CustomStringConvertible {
+enum NetworkError: Error {
+
     case invalidURL
     case invalidResponse
     case invalidData
-    case invalidJSON(error: Error)
+}
 
+extension NetworkError: CustomStringConvertible {
     var description: String {
         switch self {
         case .invalidURL:
-            return "The url is invalid"
+            return "The url in invalid."
         case .invalidResponse:
-            return "The response in invalid"
+            return "The response is invalid."
         case .invalidData:
-            return "The data is invalid"
-        case .invalidJSON(let error):
-            return "The json is invalid \(error)"
+            return "The data is invalid."
         }
     }
 }
@@ -44,11 +44,11 @@ final class NetworkingService: NetworkingProtocol {
                     return
                 }
                 guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                    completion(.failure(NetworkError.invalidResponse as Error))
+                    completion(.failure(NetworkError.invalidResponse))
                     return
                 }
                 guard let data = data else {
-                    completion(.failure(NetworkError.invalidData as Error))
+                    completion(.failure(NetworkError.invalidData))
                     return
                 }
 
@@ -57,8 +57,8 @@ final class NetworkingService: NetworkingProtocol {
                     completion(.success(decoded))
                     return
 
-                } catch let error {
-                    completion(.failure(NetworkError.invalidJSON(error: error)))
+                } catch {
+                    completion(.failure(NetworkError.invalidResponse))
                     return
                 }
 

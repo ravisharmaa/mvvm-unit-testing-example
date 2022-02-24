@@ -10,49 +10,80 @@ import XCTest
 
 class NewsViewModelTests: XCTestCase {
 
-    var sut: NewsViewModel!
+    var newsViewModel: NewsViewModel!
+    var mockNetworkingService: MockNetworkClient!
+
+    override func setUp() {
+        mockNetworkingService = MockNetworkClient()
+        newsViewModel = NewsViewModel(service: mockNetworkingService)
+    }
+
+    override func tearDown() {
+        mockNetworkingService = nil
+        newsViewModel = nil
+    }
 
     func testItGetsInitilizedWithAService() {
-        let mockService: MockNetworkClient = MockNetworkClient()
-        sut = NewsViewModel(service: mockService)
-        XCTAssertNotNil(sut.networkingService)
+        XCTAssertNotNil(newsViewModel.networkingService)
     }
 
     func testItThrowsInvalidUrlErrorWhenTheUrlIsInvalid() {
-        let mockService: MockNetworkClient = MockNetworkClient()
-        mockService.result = Result<News<[NewsData]>, Error>.failure(NetworkError.invalidURL as Error)
-        sut = NewsViewModel(service: mockService)
-        sut.fetchData(forURL: "http://invalid.url") { result in
-            switch result {
-            case .success:
-                XCTFail("No error thrown")
-            case .failure(let error):
-                XCTAssertEqual(NetworkError.invalidURL.localizedDescription, error.localizedDescription)
-            }
+        mockNetworkingService.result = Result<News, Error>.failure(NetworkError.invalidURL)
+        var fetchedDataResults: [Result<[NewsListViewModel], Error>] = []
+        newsViewModel.fetchData { fetchedDataResults.append($0) }
+        XCTAssertEqual(fetchedDataResults.count, 1)
+        switch fetchedDataResults[0] {
+        case .success:
+            XCTFail("Error should be thrown.")
+        case .failure(let error):
+            // swiftlint:disable force_cast
+            XCTAssertEqual(error as! NetworkError, NetworkError.invalidURL)
+            // swiftlint:enable force_cast
         }
     }
 
-    func testItFetchesDataFromNetwork() {
-        let mockService: MockNetworkClient = MockNetworkClient()
-        let newsData: NewsData =
-            .init(author: "Test Author", title: "TestTitle", description: "Test Description",
-                  url: "random url", source: "random source", category: "random Category",
-                  language: "random language", country: "random country")
-        let data: News<[NewsData]> = .init(data: [newsData])
-        mockService.result = Result<News<[NewsData]>, Error>.success(data)
-        sut = NewsViewModel(service: mockService)
-        let expectedResult: [NewsListViewModel] = [
-            .init(newsData)
-        ]
+    func testItThorwsInvalidDataWhenTheDataIsNotAppropriate() {
+        mockNetworkingService.result = Result<News, Error>.failure(NetworkError.invalidData)
+        var fetchedDataResults: [Result<[NewsListViewModel], Error>] = []
+        newsViewModel.fetchData { fetchedDataResults.append($0) }
+        XCTAssertEqual(fetchedDataResults.count, 1)
+        switch fetchedDataResults[0] {
+        case .success:
+            XCTFail("Error should be thrown.")
+        case .failure(let error):
+            // swiftlint:disable force_cast
+            XCTAssertEqual(error as! NetworkError, NetworkError.invalidData)
+            // swiftlint:enable force_cast
+        }
+    }
 
-        sut.fetchData(forURL: "https://news-api.org") { result in
-            switch result {
-            case .success(let data):
-                XCTAssertTrue(data.count == 1)
-                XCTAssertEqual(expectedResult, data)
-            case .failure:
-                XCTFail("No error thrown")
-            }
+    func testItThrowsInvalidResponseWhenTheResponseIsInvalid() {
+        mockNetworkingService.result = Result<News, Error>.failure(NetworkError.invalidResponse)
+        var fetchedDataResults: [Result<[NewsListViewModel], Error>] = []
+        newsViewModel.fetchData { fetchedDataResults.append($0) }
+        XCTAssertEqual(fetchedDataResults.count, 1)
+        switch fetchedDataResults[0] {
+        case .success:
+            XCTFail("Error should be thrown.")
+        case .failure(let error):
+            // swiftlint:disable force_cast
+            XCTAssertEqual(error as! NetworkError, NetworkError.invalidResponse)
+            XCTAssertNotEqual(error as! NetworkError, NetworkError.invalidURL)
+            // swiftlint:enable force_cast
+        }
+    }
+
+    func testItParsesDataProperlyWhenTheResponseIsValid() {
+        mockNetworkingService.result = Result<News, Error>.success(News.placeholder)
+        var fetchedDataResults: [Result<[NewsListViewModel], Error>] = []
+        newsViewModel.fetchData { fetchedDataResults.append($0) }
+        XCTAssertEqual(fetchedDataResults.count, 1)
+        switch fetchedDataResults[0] {
+        case .success(let data):
+            XCTAssertEqual(data.count, 2)
+            XCTAssertEqual(data[0].newsCategory, "test_category")
+        case .failure:
+            XCTFail("No Error should be thrown.")
         }
 
     }

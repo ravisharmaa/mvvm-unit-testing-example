@@ -26,13 +26,14 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "41623F7327AD9DBE009DEB9F"
+               BlueprintIdentifier = "41DC42F027AFFF3700DFD3B3"
                BuildableName = "MVVMIOSTests.xctest"
                BlueprintName = "MVVMIOSTests"
                ReferencedContainer = "container:MVVMIOS.xcodeproj">

@@ -41,6 +41,7 @@ class ViewController: UITableViewController {
         view.backgroundColor = .systemBackground
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
+        tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.reuseId)
     }
 
     func setupActivityIndicator() {
@@ -69,11 +70,12 @@ class ViewController: UITableViewController {
     }
 
     func setupDataSource() {
-        dataSource = .init(tableView: tableView, cellProvider: { _, _, itemIdentifier in
-            let cell = UITableViewCell()
-            cell.textLabel?.text = itemIdentifier.newsDescription
-            cell.textLabel?.numberOfLines = 0
-            cell.textLabel?.textAlignment = .justified
+        dataSource = .init(tableView: tableView, cellProvider: { tableView, indexPath, itemIdentifier in
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.reuseId,
+                                                           for: indexPath) as? NewsCell else {
+                preconditionFailure()
+            }
+            cell.configurCell(withViewModel: itemIdentifier)
             return cell
         })
 

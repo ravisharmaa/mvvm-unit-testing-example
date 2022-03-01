@@ -11,6 +11,7 @@
 		411E407227BFEA6B00B62078 /* NewsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411E407127BFEA6B00B62078 /* NewsListViewModel.swift */; };
 		411E407327BFEA6B00B62078 /* NewsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411E407127BFEA6B00B62078 /* NewsListViewModel.swift */; };
 		41623F7F27AD9E30009DEB9F /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41623F7E27AD9E30009DEB9F /* Response.swift */; };
+		416A0C8F27CE8738006F81DE /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416A0C8E27CE8738006F81DE /* NewsCell.swift */; };
 		418A0CC027C54F22003DA277 /* NewsListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418A0CBF27C54F22003DA277 /* NewsListViewModelTests.swift */; };
 		41A364C927B934E900AD53EB /* MVVMIOSConfig.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 41A364C827B934E900AD53EB /* MVVMIOSConfig.xcconfig */; };
 		41A364CE27B93A5E00AD53EB /* NetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A364CD27B93A5E00AD53EB /* NetworkServiceMock.swift */; };
@@ -47,6 +48,7 @@
 		4111804827BF509A00DAE824 /* NewsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModelTests.swift; sourceTree = "<group>"; };
 		411E407127BFEA6B00B62078 /* NewsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewModel.swift; sourceTree = "<group>"; };
 		41623F7E27AD9E30009DEB9F /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		416A0C8E27CE8738006F81DE /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		418A0CBF27C54F22003DA277 /* NewsListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewModelTests.swift; sourceTree = "<group>"; };
 		41A364C827B934E900AD53EB /* MVVMIOSConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = MVVMIOSConfig.xcconfig; sourceTree = "<group>"; };
 		41A364CD27B93A5E00AD53EB /* NetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceMock.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 		41B7EC9727AD7D6700121738 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				416A0C8E27CE8738006F81DE /* NewsCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				41623F7F27AD9E30009DEB9F /* Response.swift in Sources */,
 				41B7EC9327AD776A00121738 /* NetworkService.swift in Sources */,
 				41B7EC9A27AD7D9400121738 /* String+Extension.swift in Sources */,
+				416A0C8F27CE8738006F81DE /* NewsCell.swift in Sources */,
 				41B7EC7F27AD725D00121738 /* ViewController.swift in Sources */,
 				41A364D027B93A9900AD53EB /* NewsViewModel.swift in Sources */,
 				41B7EC7B27AD725D00121738 /* AppDelegate.swift in Sources */,

@@ -26,4 +26,8 @@ final class NewsListViewModel: Equatable, Hashable {
     var newsCategory: String {
         return newsData.category ?? "Unavailable"
     }
+
+    var newsDescription: String {
+        return newsData.description ?? "N/A"
+    }
 }

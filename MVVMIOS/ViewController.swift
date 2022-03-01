@@ -39,19 +39,18 @@ class ViewController: UITableViewController {
 
     func setupView() {
         view.backgroundColor = .systemBackground
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 200
     }
 
     func setupActivityIndicator() {
-        tableView.addSubview(activityIndicator)
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+
         NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: tableView.centerYAnchor)
+            activityIndicator.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
         ])
-
-        if viewModel.isLoading {
-            activityIndicator.startAnimating()
-        }
-
     }
 
     func fetchDataFromViewModel() {
@@ -72,7 +71,9 @@ class ViewController: UITableViewController {
     func setupDataSource() {
         dataSource = .init(tableView: tableView, cellProvider: { _, _, itemIdentifier in
             let cell = UITableViewCell()
-            cell.textLabel?.text = itemIdentifier.newsCategory
+            cell.textLabel?.text = itemIdentifier.newsDescription
+            cell.textLabel?.numberOfLines = 0
+            cell.textLabel?.textAlignment = .justified
             return cell
         })
 
@@ -82,4 +83,9 @@ class ViewController: UITableViewController {
         snapshot.appendItems(viewModel.newsListViewModel)
         dataSource.apply(snapshot)
     }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+
 }

@@ -41,6 +41,7 @@ class ViewController: UITableViewController {
         view.backgroundColor = .systemBackground
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
+        tableView.prefetchDataSource = self
         tableView.register(NewsCell.self, forCellReuseIdentifier: NewsCell.reuseId)
     }
 
@@ -88,6 +89,12 @@ class ViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
+    }
+}
+
+extension ViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+
     }
 
 }

@@ -50,4 +50,23 @@ class MovieViewModelTests: XCTestCase {
         }
 
     }
+
+    func testItDoesNotLoadDataWhenTheDataCannotBeDecoded() {
+        service.result = Result<[MovieResult], Error>.failure(NetworkError.invalidResponse)
+        viewModel.fetchDataFromApi()
+        XCTAssertEqual(resultPresentable.resultsArray.count, 1)
+        switch resultPresentable.resultsArray[0] {
+        case .success:
+            XCTFail("No error should be present")
+        case .failure(let error):
+            // swiftlint:disable force_cast
+            XCTAssertEqual(error as! NetworkError, NetworkError.invalidResponse)
+            // swiftlint:enable force_cast
+        }
+    }
+
+    func testItPopulatesData() {
+
+    }
+
 }

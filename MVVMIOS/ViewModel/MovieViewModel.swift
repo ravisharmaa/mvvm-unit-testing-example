@@ -36,7 +36,7 @@ class MovieViewModel {
                 case .invalidURL:
                     self.resultPresentable?.presentResult(.failure(NetworkError.invalidURL))
                 default:
-                    break
+                    self.resultPresentable?.presentResult(.failure(NetworkError.invalidResponse))
                 }
             case .failure(let error):
                 self.resultPresentable?.presentResult(.failure(error))

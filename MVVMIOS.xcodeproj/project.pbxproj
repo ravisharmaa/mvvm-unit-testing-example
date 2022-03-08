@@ -38,6 +38,8 @@
 		41EF1C2127C6363C00C1FDD5 /* StubNewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EF1C2027C6363C00C1FDD5 /* StubNewsData.swift */; };
 		41EF1C2627C63CA800C1FDD5 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EF1C2527C63CA800C1FDD5 /* Configuration.swift */; };
 		41EF1C2727C63CC200C1FDD5 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EF1C2527C63CA800C1FDD5 /* Configuration.swift */; };
+		41FD947527D710B200D7DFE8 /* MovieState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FD947427D710B200D7DFE8 /* MovieState.swift */; };
+		41FD947627D728A700D7DFE8 /* MovieState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FD947427D710B200D7DFE8 /* MovieState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,7 @@
 		41DC42F127AFFF3700DFD3B3 /* MVVMIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVVMIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		41EF1C2027C6363C00C1FDD5 /* StubNewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNewsData.swift; sourceTree = "<group>"; };
 		41EF1C2527C63CA800C1FDD5 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		41FD947427D710B200D7DFE8 /* MovieState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,9 +176,9 @@
 		41B7EC8E27AD757D00121738 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				41FD947327D710A100D7DFE8 /* Movie */,
 				41A364CF27B93A9900AD53EB /* NewsViewModel.swift */,
 				411E407127BFEA6B00B62078 /* NewsListViewModel.swift */,
-				410C878727D4C9B200A8246C /* MovieViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -223,6 +226,15 @@
 				410C878A27D4CA3C00A8246C /* MovieViewModelTests.swift */,
 			);
 			path = MVVMIOSTests;
+			sourceTree = "<group>";
+		};
+		41FD947327D710A100D7DFE8 /* Movie */ = {
+			isa = PBXGroup;
+			children = (
+				410C878727D4C9B200A8246C /* MovieViewModel.swift */,
+				41FD947427D710B200D7DFE8 /* MovieState.swift */,
+			);
+			path = Movie;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,6 +366,7 @@
 				41B7EC9A27AD7D9400121738 /* String+Extension.swift in Sources */,
 				416A0C8F27CE8738006F81DE /* NewsCell.swift in Sources */,
 				41B7EC7F27AD725D00121738 /* ViewController.swift in Sources */,
+				41FD947527D710B200D7DFE8 /* MovieState.swift in Sources */,
 				41A364D027B93A9900AD53EB /* NewsViewModel.swift in Sources */,
 				410C878627D4C93800A8246C /* MovieListViewController.swift in Sources */,
 				41B7EC7B27AD725D00121738 /* AppDelegate.swift in Sources */,
@@ -374,6 +387,7 @@
 				41EF1C2727C63CC200C1FDD5 /* Configuration.swift in Sources */,
 				41DC42FD27B0004400DFD3B3 /* NetworkService.swift in Sources */,
 				4111804927BF509A00DAE824 /* NewsViewModelTests.swift in Sources */,
+				41FD947627D728A700D7DFE8 /* MovieState.swift in Sources */,
 				41EF1C2127C6363C00C1FDD5 /* StubNewsData.swift in Sources */,
 				41DC42FE27B0007D00DFD3B3 /* Response.swift in Sources */,
 				410C878927D4CA0700A8246C /* MovieViewModel.swift in Sources */,

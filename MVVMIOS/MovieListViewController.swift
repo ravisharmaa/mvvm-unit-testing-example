@@ -50,6 +50,10 @@ class MovieListViewController: UITableViewController {
 }
 
 extension MovieListViewController: MovieViewModelResultPresentable {
+    func setupViewState(_ with: MovieViewState) {
+
+    }
+
     func presentResult(_ result: Result<[MovieResult], Error>?) {
 
         DispatchQueue.main.async { [weak self] in

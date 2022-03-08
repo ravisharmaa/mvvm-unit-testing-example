@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         let networkingService: NetworkingProtocol = NetworkingService()
-        let newsViewModel: MovieViewModel = .init(networkingService)
+        let newsViewModel: MovieViewModel = .init(networkingService, urlManager: URlManager())
         window?.rootViewController = UINavigationController(rootViewController: MovieListViewController(newsViewModel))
         window?.makeKeyAndVisible()
     }

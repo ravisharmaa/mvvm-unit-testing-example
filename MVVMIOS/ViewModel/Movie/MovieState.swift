@@ -11,6 +11,7 @@ enum MovieViewState {
     case error(MovieErrorViewState)
     case loading(MovieLoadingViewState)
     case loaded(MovieLoadedViewState)
+
 }
 
 struct MovieErrorViewState {

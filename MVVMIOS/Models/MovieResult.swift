@@ -13,7 +13,7 @@ struct MovieResult: Codable {
     let references: String
     let sortOrder: Int
     let createdAt, updatedAt: String
-    let uuid: UUID
+    let uuid: UUID = UUID()
 
     enum CodingKeys: String, CodingKey {
         case id, name

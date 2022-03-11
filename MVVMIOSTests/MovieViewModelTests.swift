@@ -92,8 +92,8 @@ class MovieViewModelTests: XCTestCase {
         mockURLManager.url = nil
         service.result = Result<[MovieResult], Error>.failure(NetworkError.invalidURL)
         viewModel.getDataFromApi()
-        XCTAssertEqual(resultPresentable.movieViewState.count, 1)
-        switch resultPresentable.movieViewState[0] {
+        XCTAssertEqual(resultPresentable.movieViewState.count, 2)
+        switch resultPresentable.movieViewState[1] {
         case .error(let error):
             XCTAssertEqual(error.isLoading, false)
             XCTAssertEqual(error.errorText, "The url is invalid.")
@@ -108,8 +108,8 @@ class MovieViewModelTests: XCTestCase {
         mockURLManager.url = "https://valid.url.com"
         service.result = Result<[MovieResult], Error>.failure(NetworkError.invalidResponse)
         viewModel.getDataFromApi()
-        XCTAssertEqual(resultPresentable.movieViewState.count, 1)
-        switch resultPresentable.movieViewState[0] {
+        XCTAssertEqual(resultPresentable.movieViewState.count, 2)
+        switch resultPresentable.movieViewState[1] {
         case .error(let error):
             XCTAssertEqual(error.isLoading, false)
             XCTAssertEqual(error.errorText, "The response is invalid.")
@@ -119,6 +119,38 @@ class MovieViewModelTests: XCTestCase {
             XCTFail("No error should be present")
         }
 
+    }
+
+    func testItSetsLoadingViewState() {
+        let exepctedState: MovieLoadingViewState = .init(loadingText: "Loading...", loaderStatus: true)
+        let state: MovieViewState = viewModel.setLoadingViewState()
+        resultPresentable.setupViewState(state)
+        XCTAssertEqual(resultPresentable.movieViewState.count, 1)
+        switch resultPresentable.movieViewState[0] {
+        case .loading(let state):
+            XCTAssertEqual(state.loadingText, exepctedState.loadingText)
+            XCTAssertTrue(state.loaderStatus)
+        case .error:
+            XCTFail("The state is not error state")
+        case .loaded:
+            XCTFail("The state is not loaded state")
+        }
+    }
+
+    func testItSetsErrorStateForUnknownErrors() {
+        let expectedState: MovieErrorViewState = .init(errorText: "Unknown Error", isLoading: false)
+        let error: NSError = NSError(domain: "This is an unknown error", code: 202, userInfo: nil)
+        let state: MovieViewState = viewModel.viewStateFor(for: error)
+        resultPresentable.setupViewState(state)
+        XCTAssertEqual(resultPresentable.movieViewState.count, 1)
+        switch resultPresentable.movieViewState[0] {
+        case .loading:
+            XCTFail("The state is not loading state")
+        case .error(let error):
+            XCTAssertEqual(error.errorText, expectedState.errorText)
+        case .loaded:
+            XCTFail("The state is not loaded state")
+        }
     }
 
 }

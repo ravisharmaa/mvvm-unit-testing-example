@@ -61,8 +61,10 @@ class MovieViewModel {
     }
 
     func getDataFromApi() {
-        guard let url = urlManager.prepareURL(withString: "https://google.com") else {
-            self.viewStateFor(for: NetworkError.invalidURL)
+        resultPresentable?.setupViewState(setLoadingViewState())
+
+        guard let url = urlManager.prepareURL(withString: "http://gdhistory.com/api/periods") else {
+            self.resultPresentable?.setupViewState(viewStateFor(for: NetworkError.invalidURL))
             return
         }
 
@@ -71,19 +73,23 @@ class MovieViewModel {
             case .success(let data):
                 print(data)
             case .failure(let error):
-                self.viewStateFor(for: error)
+                self.resultPresentable?.setupViewState(self.viewStateFor(for: error))
+
             }
 
         }
     }
 
-    internal func viewStateFor(for error: Error) {
+    internal func setLoadingViewState() -> MovieViewState {
+        return .loading(.init(loadingText: "Loading...", loaderStatus: true))
+    }
+
+    internal func viewStateFor(for error: Error) -> MovieViewState {
         guard let error = error as? NetworkError else {
-            self.resultPresentable?.setupViewState(.error(.init(errorText: "Unknown error", isLoading: true)))
-            return
+            return .error(.init(errorText: "Unknown Error", isLoading: false))
         }
 
-        self.resultPresentable?.setupViewState(.error(.init(errorText: error.description, isLoading: false)))
+        return .error(.init(errorText: error.description, isLoading: false))
     }
 
     internal func viewStateFor(for: [MovieResult]) {

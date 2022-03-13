@@ -68,10 +68,11 @@ class MovieViewModel {
             return
         }
 
-        self.service.loadUsingModel([MovieResult].self, from: .init(url: url)) { result in
+        self.service.loadUsingModel([MovieResult].self, from: .init(url: url)) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let data):
-                print(data)
+                self.resultPresentable?.setupViewState(self.viewStateForResult(result: data))
             case .failure(let error):
                 self.resultPresentable?.setupViewState(self.viewStateFor(for: error))
 
@@ -92,7 +93,11 @@ class MovieViewModel {
         return .error(.init(errorText: error.description, isLoading: false))
     }
 
-    internal func viewStateFor(for: [MovieResult]) {
+    internal func viewStateForResult(result: [MovieResult]) -> MovieViewState {
+        let movies = result.map { domainObject in
+            return MovieViewData(title: domainObject.timePeriod, name: domainObject.name)
+        }
 
+        return .loaded(.init(movies: movies, isLoaded: true))
     }
 }

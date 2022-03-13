@@ -24,10 +24,12 @@ struct MovieLoadingViewState {
     let loaderStatus: Bool
 }
 
-struct MovieLoadedViewState {
-    let movie: MovieResult
+struct MovieViewData: Hashable {
+    let title: String
+    let name: String
+}
 
-    var name: String {
-        movie.timePeriod
-    }
+struct MovieLoadedViewState {
+    let movies: [MovieViewData]
+    let isLoaded: Bool
 }

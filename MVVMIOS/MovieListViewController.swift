@@ -28,6 +28,12 @@ class MovieListViewController: UITableViewController {
 
     let viewModel: MovieViewModel
 
+    enum Section {
+        case main
+    }
+
+    var dataSource: UITableViewDiffableDataSource<Section, MovieViewData>!
+
     init(_ viewModel: MovieViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -54,6 +60,8 @@ class MovieListViewController: UITableViewController {
             testLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             testLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 20)
         ])
+
+        tableView.prefetchDataSource = self
     }
 
     func fetchData() {
@@ -74,16 +82,40 @@ extension MovieListViewController: MovieViewModelResultPresentable {
             case .loading(let movieLoadingViewState):
                 self.testLabel.textColor = .red
                 self.testLabel.text = movieLoadingViewState.loadingText
-            case .loaded(let movieLoadedViewState):
-                self.activitIndicator.stopAnimating()
-                self.testLabel.textColor = .blue
-                self.testLabel.text = movieLoadedViewState.name
+            case .loaded(let data):
+                UIView.animate(withDuration: 1.0) {
+                    self.activitIndicator.stopAnimating()
+                    self.testLabel.isHidden = data.isLoaded
+                    self.setupDataSource(data: data.movies)
+                }
+
             }
 
         }
     }
 
     func presentResult(_ result: Result<[MovieResult], Error>?) {
+        //
+    }
+
+    func setupDataSource(data: [MovieViewData]) {
+        dataSource = .init(tableView: tableView, cellProvider: { _, _, itemIdentifier in
+            let cell = UITableViewCell()
+            cell.textLabel?.text = itemIdentifier.name
+            return cell
+        })
+
+        var snapshot: NSDiffableDataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, MovieViewData>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(data)
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
+
+}
+
+extension MovieListViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        print(indexPaths)
     }
 
 }

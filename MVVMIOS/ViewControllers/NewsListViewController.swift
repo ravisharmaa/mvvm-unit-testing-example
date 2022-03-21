@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
+class NewsListViewController: UITableViewController {
 
     // MARK: Views
     fileprivate lazy var activityIndicator: UIActivityIndicatorView = {
@@ -19,7 +19,7 @@ class ViewController: UITableViewController {
 
     let viewModel: NewsViewModel
 
-    var dataSource: UITableViewDiffableDataSource<NewsViewModel.NewVCSection, NewsListViewModel>!
+//    var dataSource: UITableViewDiffableDataSource<NewsViewModel.NewVCSection, NewsListViewModel>!
 
     init(_ usingViewModel: NewsViewModel) {
         self.viewModel = usingViewModel
@@ -61,7 +61,7 @@ class ViewController: UITableViewController {
             switch result {
             case .success:
                 DispatchQueue.main.async {
-                    self.setupDataSource()
+//                    self.setupDataSource()
                     self.activityIndicator.stopAnimating()
                 }
             case .failure(let error):
@@ -70,29 +70,29 @@ class ViewController: UITableViewController {
         }
     }
 
-    func setupDataSource() {
-        dataSource = .init(tableView: tableView, cellProvider: { tableView, indexPath, itemIdentifier in
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.reuseId,
-                                                           for: indexPath) as? NewsCell else {
-                preconditionFailure()
-            }
-            cell.configurCell(withViewModel: itemIdentifier)
-            return cell
-        })
-
-        var snapshot: NSDiffableDataSourceSnapshot = NSDiffableDataSourceSnapshot<NewsViewModel.NewVCSection,
-                                                                                    NewsListViewModel>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(viewModel.newsListViewModel)
-        dataSource.apply(snapshot)
-    }
+//    func setupDataSource() {
+//        dataSource = .init(tableView: tableView, cellProvider: { tableView, indexPath, itemIdentifier in
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.reuseId,
+//                                                           for: indexPath) as? NewsCell else {
+//                preconditionFailure()
+//            }
+//            cell.configurCell(withViewModel: itemIdentifier)
+//            return cell
+//        })
+//
+//        var snapshot: NSDiffableDataSourceSnapshot = NSDiffableDataSourceSnapshot<NewsViewModel.NewVCSection,
+//                                                                                    NewsListViewModel>()
+//        snapshot.appendSections([.main])
+//        snapshot.appendItems(viewModel.newsListViewModel)
+//        dataSource.apply(snapshot)
+//    }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
 }
 
-extension ViewController: UITableViewDataSourcePrefetching {
+extension NewsListViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
 
     }

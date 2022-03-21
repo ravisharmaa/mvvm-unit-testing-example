@@ -1,0 +1,15 @@
+//
+//  MVVMIOSConfig.xcconfig
+//  MVVMIOS
+//
+//  Created by Ravi Bastola on 2/13/22.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+BASE_URL=api.mediastack.com/v1/news
+
+// Api keys
+
+API_KEY=a875de00b86b6c8989414d9c66d04bf8
